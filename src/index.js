@@ -4,10 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// Redux: Create store
+import { createStore } from "redux";
+import allReducers from "./Redux/reducers";  // khai báo kiểu này, mặc định sẽ đi tới index.js trong thư mục reducers
+import { Provider } from "react-redux";
+const store = createStore(
+  allReducers,
+);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 
