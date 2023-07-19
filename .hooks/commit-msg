@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+import re, sys
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+examples = """fix: navbar not responsive on mobile
+test: prepared test cases for user authentication
+chore: moved to semantic versioning
+feat(auth): added social login using twitter
+"""
+
+types = """build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+ci: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
+docs: Documentation only changes
+feat: A new feature
+fix: A bug fix
+perf: A code change that improves performance
+refactor: A code change that neither fixes a bug nor adds a feature
+style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+test: Adding missing tests or correcting existing tests
+build: update CI configurations
+chore: changes on configurations not related to CI build (linter, versions, etc.)
+"""
+
+def main():
+    pattern = r'(new|build|ci|docs|feat|fix|perf|refactor|style|test|chore|revert)(\([\w\-]+\))?:\s.*'
+    filename = sys.argv[1]
+    message = open(filename, 'r').read()
+    matches = re.match(pattern, message)
+    if matches == None:
+        print("\n" + bcolors.FAIL + "COMMIT FAILED!" + bcolors.ENDC)
+        print("\nPlease enter commit message in the conventional format and try to commit again. Examples:")
+        print("\n" + bcolors.WARNING + examples + bcolors.ENDC)
+        print("\nCHECK COMMIT CONVENTIONS BELOW!\n" + types)
+        print("\nCheck the Conventional Commits at https://www.conventionalcommits.org/\n" )
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
+
