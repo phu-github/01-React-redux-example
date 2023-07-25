@@ -12,3 +12,6 @@
 - Tạo file .eslintrc.js ở root
 - Tạo file .eslintignore owr root
 
+3. Setup lint-staged: Bởi vì ESLINT sẽ chạy toàn bộ code, nên lint-staged sẽ chỉ cho phép ta thực hiện một hoặc một số công việc với những file được git staged
+- Cài đặt: npm install --save-dev lint-staged
+- Add 1 đoạn script bên trong package.json
