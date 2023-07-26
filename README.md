@@ -1,3 +1,4 @@
+# Link tham khảo: https://viblo.asia/p/nang-cao-chat-luong-code-va-hieu-qua-lam-viec-nhom-voi-husky-lint-staged-commitlint-4dbZNnMnZYM
 1. Setup prettier: để format code
 - Cài phần mềm prettier
 - Thêm 3 file .prettercc, .prettierignore, .editconfig
@@ -15,3 +16,13 @@
 3. Setup lint-staged: Bởi vì ESLINT sẽ chạy toàn bộ code, nên lint-staged sẽ chỉ cho phép ta thực hiện một hoặc một số công việc với những file được git staged
 - Cài đặt: npm install --save-dev lint-staged
 - Add 1 đoạn script bên trong package.json
+
+4. Setup Husky: tool bắt sự kiện khi thao tác với git
+- Cài đặt: yarn add --dev husky
+- Tạo thư mục .husky: npx husky install
+- Husky bắt lấy event tại thời điểm user gõ git commit: npx husky add .husky/pre-commit "yarn lint-staged"
+- setup husky được tự động ko cần các members làm lại nữa thì các bạn thêm vào file package.json 1 script như sau:
+    "scripts": {
+        ...
+        "postinstall": "husky install"
+    }
